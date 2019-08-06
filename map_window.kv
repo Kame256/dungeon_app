@@ -1,56 +1,73 @@
 <Map_screen@BoxLayout>:
   orientation:"vertical"
   Window:
+    Floor
+      cols:5
+    Status:
   Operation:
+    size_hint_y:0.5
+    Operation_action:
+      size_hint_x:0.6
+      Action_command:
+        text:"Action"
+      Action_command:
+        text:"Dash"
+      Action_command:
+        text:"Menu"
+      Action_command:
+        text:"map"
+    Operation_move:
+      Move_command:
+        id:key_7
+        text:""
+      Move_command:
+        id:key_8
+        text:""
+      Move_command:
+        id:key_9
+        text:"A"
+      Move_command:
+        id:key_4
+        text:""
+      Move_command:
+        id:key_5
+        text:"Up"
+      Move_command:
+        id:key_6
+        text:"B"
+      Move_command:
+        id:key_1
+        text:"Left"
+      Move_command:
+        id:key_2
+        text:"Down"
+      Move_command:
+        id:key_3
+        text:"Right"
 
 
 <Operation>:
-  size_hint_y:0.5
-  Operation_action:
-    size_hint_x:0.6
-    Action_command:
-      text:"Action"
-    Action_command:
-      text:"Dash"
-    Action_command:
-      text:"Menu"
-    Action_command:
-      text:"map"
-  Operation_move:
-    Move_command:
-      id:key_7
-      text:""
-    Move_command:
-      id:key_8
-      text:""
-    Move_command:
-      id:key_9
-      text:"A"
-    Move_command:
-      id:key_4
-      text:"B"
-    Move_command:
-      id:key_5
-      text:"Up"
-    Move_command:
-      id:key_6
-      text:""
-    Move_command:
-      id:key_1
-      text:"Left"
-    Move_command:
-      id:key_2
-      text:"Down"
-    Move_command:
-      id:key_3
-      text:"Right"
+
 
 <Map_screen@BoxLayout>:
   orientation:"vertical"
-<Window@GridLayout>:
+<Window@BoxLayout>:
+  orientation:"vertical"
+
+<Floor>:
 
 <Room@Button>:
+#  background_color:
 
+<Status@Label>:
+  text: "hoe"
+  size_hint_y:0.3
+  canvas.before:
+    Color:
+      rgba:0,0,1,1
+    Rectangle:
+      pos:self.pos
+      size:self.size
 <Operation@BoxLayout>:
   orientation:"horizontal"
 

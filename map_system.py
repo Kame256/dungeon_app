@@ -3,12 +3,14 @@ import random
 class Floor:
 
     def __init__(self):
-        self.map_range=[random.randint(2,5),random.randint(2,5)]
-        self.start=0
+        self.floor_range=[random.randint(2,5),random.randint(2,5)]
 
-    def set_map(self):
-        y_range=self.map_range[0]
-        x_range=self.map_range[1]
+        self.start=self.set_floor()[1]
+        self.room_list=self.set_floor()[0]
+
+    def set_floor(self):
+        y_range=self.floor_range[0]
+        x_range=self.floor_range[1]
         start=[random.randint(0,y_range),random.randint(0,x_range)]
         goal=[random.randint(0,y_range),random.randint(0,x_range)]
         while 1:
@@ -16,14 +18,14 @@ class Floor:
                 goal=[random.randint(0,y_range),random.randint(0,x_range)]
             else:
                 break
-        empty_map=[[0 for x in range(x_range+1)] for x in range(y_range+1)]
-        empty_map[start[0]][start[1]]=1
-        empty_map[goal[0]][goal[1]]=2
-        map=[[random.randint(3,5) if x==0 else x for x in y ] for y in empty_map]
-        return [map,start]
+        empty_floor=[[0 for x in range(x_range+1)] for x in range(y_range+1)]
+        empty_floor[start[0]][start[1]]=1
+        empty_floor[goal[0]][goal[1]]=2
+        floor=[[random.randint(3,5) if x==0 else x for x in y ] for y in empty_floor]
+        return [floor,start]
 # イベントの設定
-    def make_event(self,map):
-        for　y in map:
+    def make_event(self,floor):
+        for y in floor:
             for x in y:
                 if x==4:
                     #敵を作成
@@ -34,5 +36,3 @@ class Floor:
                 # イベントを作成
                 elif x==6:
                     return 1
-
-Class Room(Bottu)
