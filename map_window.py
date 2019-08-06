@@ -58,6 +58,7 @@ class Room(Button):
     def __init__(self,event=0,**kwargs):
         super(Room,self).__init__(**kwargs)
         self.set_design(event)
+        self.event=event
 
         pass
     def set_design(self,event):
