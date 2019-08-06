@@ -25,8 +25,8 @@ from kivy.uix.textinput import TextInput
 Builder.load_file('map_window.kv')
 resource_add_path("./font")
 LabelBase.register(DEFAULT_FONT, "ipaexg.ttf")
-Config.set('graphics', 'width', '350')
-Config.set('graphics', 'height', '650')
+Config.set('graphics', 'width', '300')
+Config.set('graphics', 'height', '500')
 #Config.set('modules', 'showborder','0')
 Config.write()
 
@@ -45,8 +45,8 @@ class Floor(GridLayout):
         color_list=[[[random.randint(0,1),random.randint(0,1),random.randint(0,1),1] for x in range(5)] for y in range(4)]
         self.sys_floor=map_system.Floor()
         self.room_list=self.sys_floor.room_list
-        anko=1
-        room_list=[[Room(text="hoge",background_color=color_list[y][x],anko=x) for x in range(5)] for y in range(4)]
+        self.cols=len(self.room_list)
+        room_list=[[Room(text="hoge",event=self.room_list[y][x]) for x in range(len(self.room_list[y]))] for y in range(len(self.room_list))]
         for x in room_list:
             for y in x:
                 self.add_widget(y)
@@ -55,13 +55,31 @@ class Floor(GridLayout):
 
 class Room(Button):
 
-    def __init__(self,anko=5,**kwargs):
+    def __init__(self,event=0,**kwargs):
         super(Room,self).__init__(**kwargs)
-        self.background_color=[1,0,0,1]
-        self.text=str(anko)
-
+        self.set_design(event)
 
         pass
+    def set_design(self,event):
+        if event==1:
+            self.background_color=[0,0,0,1]
+            self.text="start"
+        elif event==2:
+            self.background_color=[1,1,1,1]
+            self.text="next"
+        elif event==3:
+            self.background_color=[1,0,0,1]
+            self.text="enemy"
+        elif event==4:
+            self.background_color=[0,1,0,1]
+            self.text="Item"
+        elif event==5:
+            self.background_color=[0,0,1,1]
+            self.text="hapnning"
+        else:
+            self.background_color=[0,1,1,1]
+            self.text="error"
+        return 0
 
 
 class Map_window(GridLayout):
