@@ -1,0 +1,64 @@
+<Map_screen@BoxLayout>:
+  orientation:"vertical"
+  Window:
+  Operation:
+
+
+<Operation>:
+  size_hint_y:0.5
+  Operation_action:
+    size_hint_x:0.6
+    Action_command:
+      text:"Action"
+    Action_command:
+      text:"Dash"
+    Action_command:
+      text:"Menu"
+    Action_command:
+      text:"map"
+  Operation_move:
+    Move_command:
+      id:key_7
+      text:""
+    Move_command:
+      id:key_8
+      text:""
+    Move_command:
+      id:key_9
+      text:"A"
+    Move_command:
+      id:key_4
+      text:"B"
+    Move_command:
+      id:key_5
+      text:"Up"
+    Move_command:
+      id:key_6
+      text:""
+    Move_command:
+      id:key_1
+      text:"Left"
+    Move_command:
+      id:key_2
+      text:"Down"
+    Move_command:
+      id:key_3
+      text:"Right"
+
+<Map_screen@BoxLayout>:
+  orientation:"vertical"
+<Window@GridLayout>:
+
+<Room@Button>:
+
+<Operation@BoxLayout>:
+  orientation:"horizontal"
+
+<Operation_move>:
+  cols:3
+<Action_command@Button>:
+
+<Move_command@Button>:
+  bold:True
+<Operation_action>:
+  orientation:"vertical"
