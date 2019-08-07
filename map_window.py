@@ -2,6 +2,7 @@ import random
 
 # my_file---
 import map_system
+import player
 #import
 # kivy----
 from kivy.app import App
@@ -46,7 +47,9 @@ class Floor(GridLayout):
         self.sys_floor=map_system.Floor()
         self.room_list=self.sys_floor.room_list
         self.cols=len(self.room_list)
-        room_list=[[Room(text="hoge",event=self.room_list[y][x]) for x in range(len(self.room_list[y]))] for y in range(len(self.room_list))]
+        player.position=self.sys_floor.start
+        room_list=[[Room(text="hoge",event=self.room_list[y][x],place=[y,x]) for x in range(len(self.room_list[y]))] for y in range(len(self.room_list))]
+        player.position=self.sys_floor.start
         for x in room_list:
             for y in x:
                 self.add_widget(y)
@@ -55,12 +58,23 @@ class Floor(GridLayout):
 
 class Room(Button):
 
-    def __init__(self,event=0,**kwargs):
+    def __init__(self,event=0,place=[0,0],**kwargs):
         super(Room,self).__init__(**kwargs)
         self.set_design(event)
         self.event=event
+        self.place=place
+        if self.place==player.position:
+            with self.canvas.after:
+                Color(1, 0, 0, 0.5, mode='rgba')
+                self.rect = Rectangle(pos=self.pos, size=self.size)
+            self.bind(pos=self.update_rect)
+            self.bind(size=self.update_rect)
 
-        pass
+    def update_rect(self, *args):
+        self.rect.pos = self.pos
+        self.rect.size = self.size
+
+
     def set_design(self,event):
         if event==1:
             self.background_color=[0,0,0,1]
@@ -126,4 +140,5 @@ class Map_mode(App):
         map_screen=Map_screen()
         return map_screen
 if __name__=="__main__":
+    player=player.Player()
     Map_mode().run()
