@@ -5,8 +5,10 @@ class Floor:
     def __init__(self):
         self.floor_range=[random.randint(2,5),random.randint(2,5)]
 
-        self.start=self.set_floor()[1]
-        self.room_list=self.set_floor()[0]
+        floor_start=self.set_floor()
+        self.room_list=floor_start[0]
+        self.start=floor_start[1]
+
 
     def set_floor(self):
         y_range=self.floor_range[0]

@@ -46,9 +46,11 @@ class Floor(GridLayout):
         color_list=[[[random.randint(0,1),random.randint(0,1),random.randint(0,1),1] for x in range(5)] for y in range(4)]
         self.sys_floor=map_system.Floor()
         self.room_list=self.sys_floor.room_list
-        self.cols=len(self.room_list)
+        self.rows=len(self.room_list)
         player.position=self.sys_floor.start
-        room_list=[[Room(text="hoge",event=self.room_list[y][x],place=[y,x]) for x in range(len(self.room_list[y]))] for y in range(len(self.room_list))]
+        self.start=self.sys_floor.start
+        print(self.room_list)
+        room_list=[[Room(text="hoge",event=self.room_list[y][x],place=[y,x],start=self.start) for x in range(len(self.room_list[y]))] for y in range(len(self.room_list))]
         player.position=self.sys_floor.start
         for x in room_list:
             for y in x:
@@ -58,7 +60,7 @@ class Floor(GridLayout):
 
 class Room(Button):
 
-    def __init__(self,event=0,place=[0,0],**kwargs):
+    def __init__(self,event=0,place=[0,0],start=0,**kwargs):
         super(Room,self).__init__(**kwargs)
         self.set_design(event)
         self.event=event
